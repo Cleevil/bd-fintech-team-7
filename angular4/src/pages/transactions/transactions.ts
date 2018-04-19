@@ -28,6 +28,10 @@ export class Transactions {
         )
     }
 
+    private scrollToTop() {
+        document.body.scrollTo(0,0);
+    }
+
     private accountDataReady(data){
        this.accounts = data.accounts;
        this.paramsSubscription = this.route.params.subscribe(
