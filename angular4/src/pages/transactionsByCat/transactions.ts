@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
     templateUrl: './transactions.html'
 })
-export class Transactions {
+export class TransactionsByCat {
 
     private paramsSubscription;
     private transactions = [];
