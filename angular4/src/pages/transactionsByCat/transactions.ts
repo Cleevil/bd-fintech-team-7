@@ -26,6 +26,11 @@ export class TransactionsByCat {
                 this.accountDataReady(data);
             }
         )
+        this.service.fetchCategories().then(
+            data => {
+                console.log(data);
+            }
+        )
     }
 
     private scrollToTop() {

@@ -9,7 +9,8 @@
 			</li>
 		</ul>
 		<h2>Saldo</h2>
-		<dropdown
+		<label>Select category: </label>
+		<select id="transactionCats"></select>
 		<div class="balance">{{ selectedAccount?.balance }} kr</div>
 		<ul class="transactions">
 			<li *ngFor="let transaction of transactions" class="transaction"> 
