@@ -44,7 +44,7 @@ export class Transactions {
 
     private selectAccount(account){
         this.selectedAccount = account;
-        this.selectedAccount.balance = this.accounts[0].balance;
+        this.selectedAccount.balance = account.balance;
         this.fetchTransactionData(this.selectedAccount, this.currentPage);
     }
 
