@@ -58,8 +58,9 @@ export class TransactionsByCat {
     }
 
     private fetchTransactionData(account, page){
-        this.service.fetchTransactionsByPage(account.account_nbr, page)
+        this.service.fetchTransactionsByCat(account.account_nbr, 'Andet')
         .then(data => {
+            console.log(data);
             this.transactions = data['transactions'];
         })
     }

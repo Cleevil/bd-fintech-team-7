@@ -7,6 +7,7 @@
                 	<a class="nav-link" 
 						[routerLink]="['/transactions', account.account_nbr]">
                         <div class="name">{{ account.name }}</div>
+                        <a [routerLink]="['/transactionsbycat', account.account_nbr]" class="nav-link"> Search by category </a>
                         <div class="number">{{ account.account_nbr }}</div>
                         <div class="balance">{{ account.balance }}</div>
                     </a>
