@@ -8,8 +8,9 @@ import { ActivatedRoute } from '@angular/router';
 export class Bankbot {
 
     private message: string = "";
-    private annoyanceCounter: number;
+    private annoyanceCounter: number = 0;
     private annoyanceBurst: number = 3;
+    private lastMessage: string = "";
     private messages: Message[] = [];
 
     constructor(
@@ -43,7 +44,7 @@ export class Bankbot {
         let limit = 0.7;
         let intent = null;
         response.forEach(element => {
-            if(element.value < limit){
+            if(element.value <= limit){
                 limit = element.value;
                 intent = element.label;
             }
@@ -52,16 +53,34 @@ export class Bankbot {
         let intentMsg;
         switch(intent){
             case "Budgetkonto":
-                this.annoyanceCounter = 0;
+                if(this.lastMessage == "Budgetkonto"){
+                    this.annoyanceCounter++;
+                }
+                else{
+                    this.annoyanceCounter = 0;
+                }
                 intentMsg = "Klassificeret: Budgetkonto";
+                this.lastMessage = "Budgetkonto";
                 break;
             case "Overblik":
-                this.annoyanceCounter = 0;
+                if(this.lastMessage == "Overblik"){
+                    this.annoyanceCounter++;
+                }
+                else{
+                    this.annoyanceCounter = 0;
+                }
                 intentMsg = "Klassificeret: Overblik";
+                this.lastMessage = "Overblik";
                 break;
             case "Hilsen":
-                this.annoyanceCounter++;
+                if(this.lastMessage == "Hilsen"){
+                    this.annoyanceCounter++;
+                }
+                else{
+                    this.annoyanceCounter = 0;
+                }
                 intentMsg = this.welcomeMessage();
+                this.lastMessage = "Hilsen";
                 break;
             default:
                 intentMsg = "Den besked forstod jeg desværre ikke.";
@@ -71,6 +90,7 @@ export class Bankbot {
     }
 
     private welcomeMessage(){
+        console.log(this.annoyanceCounter);
         let responseList = [];
         responseList.push("Hej med dig, hvad leder du efter?");
         responseList.push("Hej, hvordan kan jeg hjælpe?");
